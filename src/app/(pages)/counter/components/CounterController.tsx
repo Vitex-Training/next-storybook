@@ -8,7 +8,7 @@ export const CounterController = () => {
         Increment
       </button>
       <button className="bg-red-600" onClick={CounterAction.decrement}>
-        Decrement
+        Decrement 2333
       </button>
     </div>
   )
