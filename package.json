@@ -11,7 +11,7 @@
     "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,scss}\"",
     "prettier:check": "prettier --check \"src/**/*.{ts,tsx,scss}\"",
     "format": "yarn lint:fix && yarn type:check && yarn prettier:fix",
-    "ci:lint": "yarn prettier:check && yarn lint && yarn type:check",
+    "ci:lint": "yarn type:check && yarn lint && yarn prettier:check",
     "type:check": "tsc --noEmit --incremental"
   },
   "dependencies": {
@@ -20,7 +20,8 @@
     "lodash": "^4.17.21",
     "next": "14.2.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/lodash": "^4",
