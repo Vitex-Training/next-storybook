@@ -1,49 +1,38 @@
-import { atomEffect } from 'jotai-effect'
-import { atom, createStore } from 'jotai'
 import { create } from 'zustand'
 import { generateZustandValueFromInitialState, ZustandCommonState } from 'src/shared/zustand'
-import { createSelectors } from 'src/shared/zustand/selector'
-
-export const counterStore = createStore()
+import { createZustandSelector } from 'src/shared/zustand/selector'
+import { subscribeWithSelector } from 'zustand/middleware'
 
 type State = {
   count: number
+  countEven: number
 }
 
 const initialState: State = {
-  count: 10
+  count: 10,
+  countEven: 0,
 }
 
-export const useCounterStore = create<ZustandCommonState<State>>()((set) => {
-  return {
-    ...generateZustandValueFromInitialState<State>(initialState, set),
-  }
-});
-
-
-export const useCounterStoreSelector = createSelectors(useCounterStore)
-
-
-export class CounterAtom {
-  static readonly count = atom(10)
-  static readonly countEven = atom(0)
-
-  static readonly countEffect = atomEffect((get, set) => {
-    const count = get(CounterAtom.count)
-    console.log('CounterAtom.countEffect', count)
-
-    if (count % 2 === 0) {
-      set(CounterAtom.countEven, count)
+const useCounterStoreBase = create<ZustandCommonState<State>>()(
+  subscribeWithSelector((set) => {
+    return {
+      ...generateZustandValueFromInitialState<State>(initialState, set),
     }
-  })
-}
+  }),
+)
+
+export const counterStore = createZustandSelector(useCounterStoreBase)
 
 export class CounterAction {
   static increment() {
-    counterStore.set(CounterAtom.count, (c) => c + 1)
+    counterStore.setState((state) => ({
+      count: state.count + 1,
+    }))
   }
 
   static decrement() {
-    counterStore.set(CounterAtom.count, (c) => c - 1)
+    counterStore.setState((state) => ({
+      count: state.count - 1,
+    }))
   }
 }

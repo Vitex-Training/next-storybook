@@ -1,11 +1,14 @@
 'use client'
-import { useAtom, useAtomValue } from 'jotai'
-import { CounterAtom } from 'src/app/(pages)/counter/state'
+import { counterStore } from 'src/app/(pages)/counter/state'
+import { useEffect } from 'react'
 
 export const Counter = () => {
-  useAtom(CounterAtom.countEffect)
-  const count = useAtomValue(CounterAtom.count)
-  const countEven = useAtomValue(CounterAtom.countEven)
+  const count = counterStore.use.count()
+  const countEven = counterStore.use.countEven()
+
+  useEffect(() => {
+    return
+  }, [])
   return (
     <div>
       <h1>

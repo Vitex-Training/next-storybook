@@ -9,10 +9,10 @@ export const CounterPage = () => {
   const router = useRouter()
 
   return (
-    <Provider store={counterStore}>
+    <>
       <Counter />
       <CounterController />
       <button onClick={() => router.push('/')}>Navigate to homepage</button>
-    </Provider>
+    </>
   )
 }
