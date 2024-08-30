@@ -1,4 +1,4 @@
-import { PrimitiveSetAction, SetStateCallback, StateWithSetAction } from 'src/shared/zustand/type'
+import { PrimitiveSetAction, SetStateValueCallback, StateWithSetAction } from 'src/shared/zustand/type'
 import { capitalize } from 'src/shared/utils/string'
 import { AnyRecord } from 'src/types/common'
 
@@ -6,7 +6,7 @@ export type ZustandCommonState<InitialState extends AnyRecord> = ReturnType<
   typeof generateZustandValueFromInitialState<InitialState>
 >
 
-type SetFirstParam<State extends AnyRecord> = State | Partial<State> | SetStateCallback<State>
+type SetFirstParam<State extends AnyRecord> = State | Partial<State> | SetStateValueCallback<State>
 
 function stateWithSet<State extends AnyRecord>(
   state: State,
@@ -17,7 +17,11 @@ function stateWithSet<State extends AnyRecord>(
       ...acc,
       [`set${capitalize(key as string)}`]: (value: State[keyof State]) => {
         if (typeof value === 'function') {
-          return set(value)
+          return set((prev: State) => {
+            const prevValue = prev[key]
+            const result = (value as SetStateValueCallback<State, unknown>)(prevValue)
+            return { [key]: result } as Partial<State>
+          })
         }
         set({ [key]: value } as Partial<State>)
       },

@@ -1,5 +1,5 @@
 'use client'
-import { CounterAction } from 'src/app/(pages)/counter/state'
+import { CounterAction, counterStore } from 'src/app/(pages)/counter/state'
 
 export const CounterController = () => {
   return (

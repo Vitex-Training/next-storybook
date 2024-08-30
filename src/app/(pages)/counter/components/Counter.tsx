@@ -6,9 +6,6 @@ export const Counter = () => {
   const count = counterStore.use.count()
   const countEven = counterStore.use.countEven()
 
-  useEffect(() => {
-    return
-  }, [])
   return (
     <div>
       <h1>

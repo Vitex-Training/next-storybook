@@ -25,9 +25,7 @@ export const counterStore = createZustandSelector(useCounterStoreBase)
 
 export class CounterAction {
   static increment() {
-    counterStore.setState((state) => ({
-      count: state.count + 1,
-    }))
+    counterStore.getState().setCount((count) => count + 1)
   }
 
   static decrement() {
