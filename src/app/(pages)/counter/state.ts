@@ -8,12 +8,15 @@ type State = {
   countEven: number
 }
 
+type Action = {}
+
 const initialState: State = {
   count: 10,
   countEven: 0,
 }
 
-const useCounterStoreBase = create<ZustandCommonState<State>>()(
+type Store = ZustandCommonState<State> & Action
+const useCounterStoreBase = create<Store>()(
   subscribeWithSelector((set) => {
     return {
       ...generateZustandValueFromInitialState<State>(initialState, set),
