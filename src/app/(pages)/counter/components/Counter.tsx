@@ -9,7 +9,7 @@ export const Counter = () => {
   return (
     <div>
       <h1>
-        Counter test 1:
+        Counter test 3:
         {count}
       </h1>
       <h3>
