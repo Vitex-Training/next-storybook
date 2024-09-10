@@ -1,0 +1,50 @@
+
+variables:
+  YARN_CACHE_FOLDER: .yarn-cache
+cache:
+  key: cache-default
+  paths:
+    - node_modules
+    - $YARN_CACHE_FOLDER
+stages:
+  - install
+  - lint
+
+Install Dependencies:
+  stage: install
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    fallback_keys:
+      - cache-default
+    paths:
+      - $YARN_CACHE_FOLDER
+  script:
+    - corepack enable
+    - printf "\nglobalFolder:"  >> .yarnrc.yml
+    - printf " $YARN_CACHE_FOLDER" >> .yarnrc.yml
+    - cat .yarnrc.yml
+    - yarn install
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  tags:
+    - nextjs
+Code Linter:
+  stage: lint
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    fallback_keys:
+      - cache-default
+    paths:
+      - $YARN_CACHE_FOLDER
+  script:
+    - corepack enable
+    - printf "\nglobalFolder:"  >> .yarnrc.yml
+    - printf " $YARN_CACHE_FOLDER" >> .yarnrc.yml
+    - yarn install
+    - npm run ci:lint
+  dependencies:
+    - Install Dependencies
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  tags:
+    - nextjs
