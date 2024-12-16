@@ -9,23 +9,6 @@ import {
   AppAccordionTrigger,
 } from './AppAccordion';
 
-const AppAccordion = (args: React.ComponentProps<typeof AppAccordion2>) => (
-  <AppAccordion2 {...args}>
-    <AppAccordionItem value='item-1'>
-      <AppAccordionTrigger>Trigger Demo 1</AppAccordionTrigger>
-      <AppAccordionContent>Content Demo 1</AppAccordionContent>
-    </AppAccordionItem>
-    <AppAccordionItem value='item-2'>
-      <AppAccordionTrigger>Trigger Demo 2</AppAccordionTrigger>
-      <AppAccordionContent>Content Demo 2</AppAccordionContent>
-    </AppAccordionItem>
-    <AppAccordionItem value='item-3'>
-      <AppAccordionTrigger>Trigger Demo 3</AppAccordionTrigger>
-      <AppAccordionContent>Content Demo 3</AppAccordionContent>
-    </AppAccordionItem>
-  </AppAccordion2>
-);
-
 const meta = {
   argTypes: {
     className: {
@@ -39,9 +22,9 @@ const meta = {
       options: ['single', 'multiple'],
     },
   },
-  component: AppAccordion,
+  component: AppAccordion2,
   tags: ['autodocs'],
-  title: 'Components/Accordion/AccordionContainer',
+  title: 'Components/Accordion/Accordion',
 } satisfies Meta<typeof AppAccordion2>;
 
 export default meta;
@@ -53,6 +36,22 @@ export const Single: Story = {
     collapsible: true,
     type: 'single',
   },
+  render: (args) => (
+    <AppAccordion2 {...args}>
+      <AppAccordionItem value='item-1'>
+        <AppAccordionTrigger>Trigger Demo 1</AppAccordionTrigger>
+        <AppAccordionContent>Content Demo 1</AppAccordionContent>
+      </AppAccordionItem>
+      <AppAccordionItem value='item-2'>
+        <AppAccordionTrigger>Trigger Demo 2</AppAccordionTrigger>
+        <AppAccordionContent>Content Demo 2</AppAccordionContent>
+      </AppAccordionItem>
+      <AppAccordionItem value='item-3'>
+        <AppAccordionTrigger>Trigger Demo 3</AppAccordionTrigger>
+        <AppAccordionContent>Content Demo 3</AppAccordionContent>
+      </AppAccordionItem>
+    </AppAccordion2>
+  ),
 };
 export const Multiple: Story = {
   args: {
