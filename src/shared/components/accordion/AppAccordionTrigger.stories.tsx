@@ -7,14 +7,14 @@ import {
   AppAccordion,
   AppAccordionContent,
   AppAccordionItem,
-  AppAccordionTrigger as AppAccordionTrigger2,
+  AppAccordionTrigger,
   AppTriggerIconVariant,
 } from './AppAccordion';
 
-const AppAccordionTrigger = (args: React.ComponentProps<typeof AppAccordionTrigger2>) => (
+const AppAccordionTriggerStory = (args: React.ComponentProps<typeof AppAccordionTrigger>) => (
   <AppAccordion className='mx-auto w-80' collapsible type='single'>
     <AppAccordionItem value='item-1'>
-      <AppAccordionTrigger2 {...args} />
+      <AppAccordionTrigger {...args} />
       <AppAccordionContent>Content Demo 1</AppAccordionContent>
     </AppAccordionItem>
   </AppAccordion>
@@ -30,13 +30,13 @@ const meta = {
       options: ['start', 'end'] satisfies AppTriggerIconVariant['iconPosition'][],
     },
   },
-  component: AppAccordionTrigger,
+  component: AppAccordionTriggerStory,
   tags: ['autodocs'],
   title: 'Components/Accordion/AccordionTrigger',
-} satisfies Meta<typeof AppAccordionTrigger2>;
+} satisfies Meta<typeof AppAccordionTrigger>;
 
 export default meta;
-type Story = StoryObj<typeof AppAccordionTrigger2>;
+type Story = StoryObj<typeof AppAccordionTrigger>;
 
 export const Default: Story = {
   args: {

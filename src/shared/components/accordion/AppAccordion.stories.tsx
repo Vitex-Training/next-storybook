@@ -2,12 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import {
-  AppAccordion as AppAccordion2,
-  AppAccordionContent,
-  AppAccordionItem,
-  AppAccordionTrigger,
-} from './AppAccordion';
+import { AppAccordion, AppAccordionContent, AppAccordionItem, AppAccordionTrigger } from './AppAccordion';
 
 const meta = {
   argTypes: {
@@ -22,13 +17,13 @@ const meta = {
       options: ['single', 'multiple'],
     },
   },
-  component: AppAccordion2,
+  component: AppAccordion,
   tags: ['autodocs'],
   title: 'Components/Accordion/Accordion',
-} satisfies Meta<typeof AppAccordion2>;
+} satisfies Meta<typeof AppAccordion>;
 
 export default meta;
-type Story = StoryObj<typeof AppAccordion2>;
+type Story = StoryObj<typeof AppAccordion>;
 
 export const Single: Story = {
   args: {
@@ -37,7 +32,7 @@ export const Single: Story = {
     type: 'single',
   },
   render: (args) => (
-    <AppAccordion2 {...args}>
+    <AppAccordion {...args}>
       <AppAccordionItem value='item-1'>
         <AppAccordionTrigger>Trigger Demo 1</AppAccordionTrigger>
         <AppAccordionContent>Content Demo 1</AppAccordionContent>
@@ -50,7 +45,7 @@ export const Single: Story = {
         <AppAccordionTrigger>Trigger Demo 3</AppAccordionTrigger>
         <AppAccordionContent>Content Demo 3</AppAccordionContent>
       </AppAccordionItem>
-    </AppAccordion2>
+    </AppAccordion>
   ),
 };
 export const Multiple: Story = {
