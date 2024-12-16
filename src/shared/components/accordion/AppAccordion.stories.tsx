@@ -2,10 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import { AppAccordion, AppAccordionContent, AppAccordionItem, AppAccordionTrigger } from './AppAccordion';
+import {
+  AppAccordion as AppAccordion2,
+  AppAccordionContent,
+  AppAccordionItem,
+  AppAccordionTrigger,
+} from './AppAccordion';
 
-const AppAccordionDemo = (args: React.ComponentProps<typeof AppAccordion>) => (
-  <AppAccordion {...args}>
+const AppAccordion = (args: React.ComponentProps<typeof AppAccordion2>) => (
+  <AppAccordion2 {...args}>
     <AppAccordionItem value='item-1'>
       <AppAccordionTrigger>Trigger Demo 1</AppAccordionTrigger>
       <AppAccordionContent>Content Demo 1</AppAccordionContent>
@@ -18,7 +23,7 @@ const AppAccordionDemo = (args: React.ComponentProps<typeof AppAccordion>) => (
       <AppAccordionTrigger>Trigger Demo 3</AppAccordionTrigger>
       <AppAccordionContent>Content Demo 3</AppAccordionContent>
     </AppAccordionItem>
-  </AppAccordion>
+  </AppAccordion2>
 );
 
 const meta = {
@@ -34,13 +39,13 @@ const meta = {
       options: ['single', 'multiple'],
     },
   },
-  component: AppAccordionDemo,
+  component: AppAccordion,
   tags: ['autodocs'],
   title: 'Components/Accordion/AccordionContainer',
-} satisfies Meta<typeof AppAccordionDemo>;
+} satisfies Meta<typeof AppAccordion2>;
 
 export default meta;
-type Story = StoryObj<typeof AppAccordionDemo>;
+type Story = StoryObj<typeof AppAccordion2>;
 
 export const Single: Story = {
   args: {
