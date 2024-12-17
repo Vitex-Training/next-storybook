@@ -21,6 +21,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "input-otp": "^1.4.1",
     "jotai": "^2.9.3",
     "jotai-effect": "^1.0.3",
     "lodash": "^4.17.21",

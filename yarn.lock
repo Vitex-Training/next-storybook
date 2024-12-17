@@ -6723,6 +6723,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"input-otp@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "input-otp@npm:1.4.1"
+  peerDependencies:
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+  checksum: 10c0/7630c5b2be54a0569d52579c8cc4a66dab5e17afff75adf889f878c2da35cebf391be5fd4f374884e2ca5514b563dfac46eb70f4047282ba8a3c91859ae8500b
+  languageName: node
+  linkType: hard
+
 "internal-slot@npm:^1.0.7":
   version: 1.0.7
   resolution: "internal-slot@npm:1.0.7"
@@ -7840,6 +7850,7 @@ __metadata:
     eslint-plugin-storybook: "npm:^0.11.1"
     eslint-plugin-tailwindcss: "npm:3.17.5"
     husky: "npm:^9.1.5"
+    input-otp: "npm:^1.4.1"
     jotai: "npm:^2.9.3"
     jotai-effect: "npm:^1.0.3"
     lodash: "npm:^4.17.21"
