@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { fn } from '@storybook/test';
 import {
   AppBreadcrumb,
   AppBreadcrumbEllipsis,
@@ -9,10 +8,15 @@ import {
   AppBreadcrumbList,
   AppBreadcrumbPage,
   AppBreadcrumbSeparator,
-} from './AppBreadCrumb';
+} from 'src/shared/components/breadcrumb/AppBreadcrumb';
+import {
+  AppDropdownMenu,
+  AppDropdownMenuContent,
+  AppDropdownMenuItem,
+  AppDropdownMenuTrigger,
+} from 'src/shared/components/dropdown-menu/AppDropdownMenu';
 
 const meta = {
-  args: { onClick: fn() },
   component: AppBreadcrumb,
   parameters: {
     layout: 'centered',
@@ -25,9 +29,77 @@ export default meta;
 type Story = StoryObj<typeof AppBreadcrumb>;
 
 export const Default: Story = {
-  argTypes: {
-    defaultValue: {
-      
-    }
-  }
+  args: {
+    children: (
+      <AppBreadcrumbList>
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Home</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Component</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbPage>Breadcrumb</AppBreadcrumbPage>
+        </AppBreadcrumbItem>
+      </AppBreadcrumbList>
+    ),
+  },
+};
+
+export const Ellipsis: Story = {
+  args: {
+    children: (
+      <AppBreadcrumbList>
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Home</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbEllipsis />
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Component</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbPage>Breadcrumb</AppBreadcrumbPage>
+        </AppBreadcrumbItem>
+      </AppBreadcrumbList>
+    ),
+  },
+};
+
+export const WithDropdownMenu: Story = {
+  args: {
+    children: (
+      <AppBreadcrumbList>
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Home</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppDropdownMenu>
+            <AppDropdownMenuTrigger>
+              <AppBreadcrumbEllipsis />
+              <span className='sr-only'>Toggle menu</span>
+            </AppDropdownMenuTrigger>
+            <AppDropdownMenuContent align='center'>
+              <AppDropdownMenuItem>Documentation</AppDropdownMenuItem>
+              <AppDropdownMenuItem>Themes</AppDropdownMenuItem>
+              <AppDropdownMenuItem>GitHub</AppDropdownMenuItem>
+            </AppDropdownMenuContent>
+          </AppDropdownMenu>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbLink href=''>Component</AppBreadcrumbLink>
+        </AppBreadcrumbItem>
+        <AppBreadcrumbSeparator />
+        <AppBreadcrumbItem>
+          <AppBreadcrumbPage>Breadcrumb</AppBreadcrumbPage>
+        </AppBreadcrumbItem>
+      </AppBreadcrumbList>
+    ),
+  },
 };

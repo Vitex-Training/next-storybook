@@ -6,7 +6,7 @@ import {
   AppBreadcrumbList,
   AppBreadcrumbPage,
   AppBreadcrumbSeparator,
-} from 'src/shared/components/breadcrumb/AppBreadCrumb';
+} from 'src/shared/components/breadcrumb/AppBreadcrumb';
 
 export default function Home() {
   return (
