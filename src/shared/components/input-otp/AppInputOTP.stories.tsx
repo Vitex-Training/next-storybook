@@ -14,19 +14,6 @@ import {
 
 const regexMap = { REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS, REGEXP_ONLY_DIGITS_AND_CHARS };
 
-const AppInputOTPStory = (args: React.ComponentProps<typeof AppInputOTP>) => (
-  <AppInputOTP {...args}>
-    <AppInputOTPGroup>
-      <AppInputOTPSlot index={0} />
-      <AppInputOTPSlot index={1} />
-      <AppInputOTPSlot index={2} />
-      <AppInputOTPSlot index={3} />
-      <AppInputOTPSlot index={4} />
-      <AppInputOTPSlot index={5} />
-    </AppInputOTPGroup>
-  </AppInputOTP>
-);
-
 const meta = {
   args: { maxLength: 6, onComplete: fn() },
   argTypes: {
@@ -38,7 +25,7 @@ const meta = {
       options: Object.keys(regexMap),
     },
   },
-  component: AppInputOTPStory,
+  component: AppInputOTP,
   parameters: {
     layout: 'centered',
   },
@@ -51,10 +38,7 @@ type Story = StoryObj<typeof AppInputOTP>;
 
 export const Default: Story = {
   args: {
-    disabled: false,
-  },
-  render: (args) => (
-    <AppInputOTP {...args}>
+    children: (
       <AppInputOTPGroup>
         <AppInputOTPSlot index={0} />
         <AppInputOTPSlot index={1} />
@@ -63,11 +47,13 @@ export const Default: Story = {
         <AppInputOTPSlot index={4} />
         <AppInputOTPSlot index={5} />
       </AppInputOTPGroup>
-    </AppInputOTP>
-  ),
+    ),
+  },
+  render: (args) => <AppInputOTP {...args} />,
 };
 export const OnlyDigits: Story = {
   args: {
+    ...Default.args,
     pattern: REGEXP_ONLY_DIGITS,
     value: '987123',
   },
@@ -75,6 +61,7 @@ export const OnlyDigits: Story = {
 
 export const OnlyChars: Story = {
   args: {
+    ...Default.args,
     pattern: REGEXP_ONLY_CHARS,
     value: 'Ahcase',
   },
@@ -82,6 +69,7 @@ export const OnlyChars: Story = {
 
 export const CharsAndDigits: Story = {
   args: {
+    ...Default.args,
     pattern: REGEXP_ONLY_DIGITS_AND_CHARS,
     value: '6n3K5h',
   },
@@ -89,41 +77,45 @@ export const CharsAndDigits: Story = {
 
 export const WithSeparator: Story = {
   args: {
+    children: (
+      <>
+        <AppInputOTPGroup>
+          <AppInputOTPSlot index={0} />
+          <AppInputOTPSlot index={1} />
+          <AppInputOTPSlot index={2} />
+        </AppInputOTPGroup>
+        <AppInputOTPSeparator />
+        <AppInputOTPGroup>
+          <AppInputOTPSlot index={3} />
+          <AppInputOTPSlot index={4} />
+          <AppInputOTPSlot index={5} />
+        </AppInputOTPGroup>
+      </>
+    ),
     pattern: REGEXP_ONLY_DIGITS,
   },
-  render: (args) => (
-    <AppInputOTP {...args}>
-      <AppInputOTPGroup>
-        <AppInputOTPSlot index={0} />
-        <AppInputOTPSlot index={1} />
-        <AppInputOTPSlot index={2} />
-      </AppInputOTPGroup>
-      <AppInputOTPSeparator />
-      <AppInputOTPGroup>
-        <AppInputOTPSlot index={3} />
-        <AppInputOTPSlot index={4} />
-        <AppInputOTPSlot index={5} />
-      </AppInputOTPGroup>
-    </AppInputOTP>
-  ),
+  render: (args) => <AppInputOTP {...args} />,
 };
 export const Spacing: Story = {
-  render: () => (
-    <AppInputOTP maxLength={6}>
-      <AppInputOTPGroup>
-        <AppInputOTPSlot index={0} />
-        <AppInputOTPSlot index={1} />
-      </AppInputOTPGroup>
-      <AppInputOTPGroup>
-        <AppInputOTPSlot index={2} />
-        <AppInputOTPSlot index={3} />
-      </AppInputOTPGroup>
-      <AppInputOTPGroup>
-        <AppInputOTPSlot index={4} />
-        <AppInputOTPSlot index={5} />
-      </AppInputOTPGroup>
-    </AppInputOTP>
-  ),
+  args: {
+    children: (
+      <>
+        <AppInputOTPGroup>
+          <AppInputOTPSlot index={0} />
+          <AppInputOTPSlot index={1} />
+        </AppInputOTPGroup>
+        <AppInputOTPGroup>
+          <AppInputOTPSlot index={2} />
+          <AppInputOTPSlot index={3} />
+        </AppInputOTPGroup>
+        <AppInputOTPGroup>
+          <AppInputOTPSlot index={4} />
+          <AppInputOTPSlot index={5} />
+        </AppInputOTPGroup>
+      </>
+    ),
+  },
+  render: (args) => <AppInputOTP {...args} />,
 };
 export const WithCountdown: Story = {
   render: () => {
