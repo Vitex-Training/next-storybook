@@ -16,10 +16,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.2",
+    "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@radix-ui/react-progress": "^1.1.0",
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "input-otp": "^1.4.1",
     "jotai": "^2.9.3",
     "jotai-effect": "^1.0.3",
     "lodash": "^4.17.21",
