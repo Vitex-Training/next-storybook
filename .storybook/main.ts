@@ -12,6 +12,22 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {},
   },
+  webpackFinal: async (config) => {
+    const fileLoaderRule: any = config.module?.rules?.find(
+      (rule: any) => rule && rule.test instanceof RegExp && rule.test.test('.svg'),
+    );
+
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/;
+    }
+
+    config.module?.rules?.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
   staticDirs: ['../public'],
 };
 export default config;
