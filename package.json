@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint:fix": "next lint --fix",
@@ -41,6 +41,7 @@
     "@storybook/nextjs": "^8.4.7",
     "@storybook/react": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@svgr/webpack": "^8.1.0",
     "@types/lodash": "^4.17.7",
     "@types/node": "^22.5.4",
     "@types/react": "19.0.1",
