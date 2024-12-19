@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { fn } from '@storybook/test';
 import React from 'react';
+
 import {
   AppBreadcrumb,
   AppBreadcrumbItem,
@@ -9,7 +10,7 @@ import {
   AppBreadcrumbList,
   AppBreadcrumbPage,
   AppBreadcrumbSeparator,
-} from 'src/shared/components/breadcrumb/AppBreadcrumb';
+} from './AppBreadCrumb';
 
 const AppBreadcrumbLinkStory = (args: React.ComponentProps<typeof AppBreadcrumbLink>) => (
   <AppBreadcrumb>

@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
+  AppDropdownMenu,
+  AppDropdownMenuContent,
+  AppDropdownMenuItem,
+  AppDropdownMenuTrigger,
+} from 'src/shared/components/dropdown-menu/AppDropdownMenu';
+
+import {
   AppBreadcrumb,
   AppBreadcrumbEllipsis,
   AppBreadcrumbItem,
@@ -8,13 +15,7 @@ import {
   AppBreadcrumbList,
   AppBreadcrumbPage,
   AppBreadcrumbSeparator,
-} from 'src/shared/components/breadcrumb/AppBreadcrumb';
-import {
-  AppDropdownMenu,
-  AppDropdownMenuContent,
-  AppDropdownMenuItem,
-  AppDropdownMenuTrigger,
-} from 'src/shared/components/dropdown-menu/AppDropdownMenu';
+} from './AppBreadCrumb';
 
 const meta = {
   component: AppBreadcrumb,
