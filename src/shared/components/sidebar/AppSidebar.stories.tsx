@@ -36,12 +36,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof AppSidebar>;
 
-export const Sidebar: Story = {
+const SidebarTemplate: Story = {
   render: (args) => (
     <AppSidebarProvider>
       <AppSidebar {...args}>
         <h1>Sidebar</h1>
-        <AppSidebarClose />
+        <AppSidebarClose>Close sidebar</AppSidebarClose>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, quaerat neque. Accusantium earum at vero,
           nulla incidunt ducimus odit sunt reiciendis, necessitatibus repudiandae inventore minus ratione, fugit
@@ -49,7 +49,7 @@ export const Sidebar: Story = {
         </p>
       </AppSidebar>
       <div>
-        <AppSidebarTrigger />
+        <AppSidebarTrigger>Open sidebar</AppSidebarTrigger>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, quaerat neque. Accusantium earum at vero,
           nulla incidunt ducimus odit sunt reiciendis, necessitatibus repudiandae inventore minus ratione, fugit
@@ -58,4 +58,12 @@ export const Sidebar: Story = {
       </div>
     </AppSidebarProvider>
   ),
+};
+
+export const Default: Story = {
+  ...SidebarTemplate,
+  args: {
+    side: 'left',
+    variant: 'sidebar',
+  },
 };
