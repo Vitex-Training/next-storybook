@@ -1,21 +1,19 @@
 'use client';
+import { Provider } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { SidebarPreview } from 'src/shared/components/sidebar/AppSidebar';
+
+import { Counter } from './components/Counter';
+import { CounterController } from './components/CounterController';
+import { counterStore } from './state';
 
 export const CounterPage = () => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const onOpenChange = (open: boolean) => {
-    setOpen(open);
-  };
 
   return (
-    // <Provider store={counterStore}>
-    //   <Counter />
-    //   <CounterController />
-    //   <button onClick={() => router.push('/')}>Navigate to homepage</button>
-    // </Provider>
-    <SidebarPreview />
+    <Provider store={counterStore}>
+      <Counter />
+      <CounterController />
+      <button onClick={() => router.push('/')}>Navigate to homepage</button>
+    </Provider>
   );
 };
