@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from 'src/shared/utils/className';
 
-import { AppButton } from '../button/AppButton';
+import { AppButton, ButtonProps } from '../button/AppButton';
 
 const SIDEBAR_WIDTH = '16rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
@@ -73,7 +73,7 @@ export function useSidebar() {
 }
 
 const sidebarVariants = cva(
-  'duration-200 w-0 min-h-svh bg-white group-data-[state=expanded]/sidebar:w-[--sidebar-width] transition-[width,left,right] ease-linear',
+  'duration-200 w-0 bg-white  group-data-[state=expanded]/sidebar:w-[--sidebar-width]  overflow-hidden max-h-0 group-data-[state=expanded]/sidebar:min-h-svh  transition-[width,left,right] ease-linear',
   {
     defaultVariants: {
       side: 'left',
@@ -81,8 +81,6 @@ const sidebarVariants = cva(
     },
     variants: {
       side: {
-        // left: '',
-        // right: '',
         left: ' left-[calc(var(--sidebar-width)*-1)] group-data-[state=expanded]/sidebar:left-0 ',
         right: 'right-[calc(-100vw-var(--sidebar-width)*1)] group-data-[state=expanded]/sidebar:right-0 ',
       },
@@ -135,7 +133,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, AppSidebarVariant & React.Compo
 
 Sidebar.displayName = 'Sidebar';
 
-const SidebarTrigger = () => {
+const SidebarTrigger = ({ ...props }: ButtonProps) => {
   const openButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleKeyShort = (e: KeyboardEvent) => {
@@ -149,58 +147,26 @@ const SidebarTrigger = () => {
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyShort);
-
     return () => {
       window.removeEventListener('keydown', handleKeyShort);
     };
   }, []);
   const { toggleOpen } = useSidebar();
 
-  return (
-    <AppButton onClick={toggleOpen} ref={openButtonRef} type='button'>
-      open sidebar
-    </AppButton>
-  );
+  return <AppButton onClick={toggleOpen} ref={openButtonRef} type='button' {...props} />;
 };
+SidebarTrigger.displayName = 'SidebarTrigger';
 
-const SidebarClose = () => {
+const SidebarClose = React.forwardRef<HTMLButtonElement, ButtonProps>(({ ...props }, ref) => {
   const { toggleOpen } = useSidebar();
 
-  return (
-    <AppButton onClick={toggleOpen} type='button'>
-      toggle inside sidebar
-    </AppButton>
-  );
-};
-
-const SidebarPreview = () => {
-  return (
-    <SidebarProvider>
-      <Sidebar side='right' variant='floating'>
-        <h1>Sidebar</h1>
-        <SidebarClose />
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, quaerat neque. Accusantium earum at vero,
-          nulla incidunt ducimus odit sunt reiciendis, necessitatibus repudiandae inventore minus ratione, fugit
-          possimus tenetur voluptate.
-        </p>
-      </Sidebar>
-      <div>
-        <SidebarTrigger />
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus, quaerat neque. Accusantium earum at vero,
-          nulla incidunt ducimus odit sunt reiciendis, necessitatibus repudiandae inventore minus ratione, fugit
-          possimus tenetur voluptate.
-        </p>
-      </div>
-    </SidebarProvider>
-  );
-};
+  return <AppButton onClick={toggleOpen} type='button' {...props} ref={ref} />;
+});
+SidebarClose.displayName = 'SidebarClose';
 
 export {
   Sidebar as AppSidebar,
   SidebarClose as AppSidebarClose,
-  SidebarPreview,
   SidebarProvider as AppSidebarProvider,
   SidebarTrigger as AppSidebarTrigger,
 };

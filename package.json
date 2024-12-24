@@ -21,6 +21,7 @@
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.5",
+    "@types/uuid": "^10.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jotai": "^2.9.3",
@@ -31,7 +32,8 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "2.5.5",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
