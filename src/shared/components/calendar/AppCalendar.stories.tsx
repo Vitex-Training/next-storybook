@@ -1,11 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { vi } from 'date-fns/locale';
 import React, { useState } from 'react';
+import { DayPickerSingleProps } from 'react-day-picker';
 import { AppCalendar } from 'src/shared/components/calendar/AppCalendar';
 
-const AppCalendarStory = (args: React.ComponentProps<typeof AppCalendar>) => {
+const AppCalendarStorySingle = (args: DayPickerSingleProps) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  return <AppCalendar mode='single' onSelect={setDate} selected={date} {...args} />;
+  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
 };
 
 const meta = {
@@ -27,17 +28,11 @@ export default meta;
 type Story = StoryObj<typeof AppCalendar>;
 
 export const Default: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar mode='single' onSelect={setDate} selected={date} />;
-  },
+  render: () => <AppCalendarStorySingle mode='single' />,
 };
 
 export const DisabledDayOutsideMonth: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar mode='single' onSelect={setDate} selected={date} showOutsideDays={false} />;
-  },
+  render: () => <AppCalendarStorySingle mode='single' showOutsideDays={false} />,
 };
 
 export const WithFooter: Story = {
@@ -56,61 +51,31 @@ export const WithFooter: Story = {
 };
 
 export const DisabledNavigation: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar disableNavigation mode='single' onSelect={setDate} selected={date} />;
-  },
+  render: () => <AppCalendarStorySingle mode='single' />,
 };
 
 export const DisabledDays: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return (
-      <AppCalendar
-        disabled={{ after: new Date(2024, 11, 5), before: new Date(2024, 11, 18) }}
-        mode='single'
-        onSelect={setDate}
-        selected={date}
-      />
-    );
-  },
+  render: () => (
+    <AppCalendarStorySingle disabled={{ after: new Date(2024, 11, 5), before: new Date(2024, 11, 18) }} mode='single' />
+  ),
 };
 
 export const DisabledWeekend: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar disabled={{ dayOfWeek: [0, 6] }} mode='single' onSelect={setDate} selected={date} />;
-  },
+  render: () => <AppCalendarStorySingle disabled={{ dayOfWeek: [0, 6] }} mode='single' />,
 };
 
 export const CustomLanguage: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar locale={vi} mode='single' onSelect={setDate} selected={date} />;
-  },
+  render: () => <AppCalendarStorySingle locale={vi} mode='single' />,
 };
 
 export const SetStartDay: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return <AppCalendar mode='single' onSelect={setDate} selected={date} weekStartsOn={1} />;
-  },
+  render: () => <AppCalendarStorySingle mode='single' weekStartsOn={1} />,
 };
 
 export const ShowRangeDate: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return (
-      <AppCalendar
-        fromDate={new Date(2024, 1, 4)}
-        mode='single'
-        onSelect={setDate}
-        selected={date}
-        toDate={new Date(2024, 11, 29)}
-        weekStartsOn={1}
-      />
-    );
-  },
+  render: () => (
+    <AppCalendarStorySingle fromDate={new Date(2024, 1, 4)} mode='single' toDate={new Date(2024, 11, 29)} weekStartsOn={1} />
+  ),
 };
 
 export const LayoutDropdown: Story = {
