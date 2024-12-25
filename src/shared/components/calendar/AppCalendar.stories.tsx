@@ -3,6 +3,11 @@ import { vi } from 'date-fns/locale';
 import React, { useState } from 'react';
 import { AppCalendar } from 'src/shared/components/calendar/AppCalendar';
 
+const AppCalendarStory = (args: React.ComponentProps<typeof AppCalendar>) => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  return <AppCalendar mode='single' onSelect={setDate} selected={date} {...args} />;
+};
+
 const meta = {
   argTypes: {
     showOutsideDays: {
@@ -113,17 +118,17 @@ export const LayoutDropdown: Story = {
     const [date, setDate] = useState<Date | undefined>(new Date());
     return (
       <AppCalendar
+        captionLayout='dropdown'
+        classNames={{
+          caption_dropdowns: 'flex',
+          months: 'p-3',
+        }}
         fromMonth={new Date(2000, 1)}
         mode='single'
         onSelect={setDate}
         selected={date}
         toMonth={new Date(2099, 6)}
         weekStartsOn={1}
-        captionLayout='dropdown'
-        classNames={{
-          caption_dropdowns: 'flex',
-          months: 'p-3'
-        }}
       />
     );
   },
