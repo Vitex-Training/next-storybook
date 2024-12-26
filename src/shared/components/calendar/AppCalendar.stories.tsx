@@ -6,15 +6,15 @@ import { AppCalendar } from 'src/shared/components/calendar/AppCalendar';
 
 const AppCalendarStorySingle = (args: DayPickerSingleProps) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
+  return <AppCalendar className='rounded-md border' onSelect={setDate} selected={date} {...args} />;
 };
 const AppCalendarStoryMultiple = (args: DayPickerMultipleProps) => {
   const [date, setDate] = useState<Date[] | undefined>([new Date()]);
-  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
+  return <AppCalendar className='rounded-md border' onSelect={setDate} selected={date} {...args} />;
 };
 const AppCalendarStoryRange = (args: DayPickerRangeProps) => {
   const [date, setDate] = useState<DateRange | undefined>(undefined);
-  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
+  return <AppCalendar className='rounded-md border' onSelect={setDate} selected={date} {...args} />;
 };
 
 const meta = {
