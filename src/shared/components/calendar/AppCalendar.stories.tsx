@@ -1,21 +1,23 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { vi } from 'date-fns/locale';
 import React, { useState } from 'react';
-import { DayPickerSingleProps } from 'react-day-picker';
+import { DateRange, DayPickerMultipleProps, DayPickerRangeProps, DayPickerSingleProps } from 'react-day-picker';
 import { AppCalendar } from 'src/shared/components/calendar/AppCalendar';
 
 const AppCalendarStorySingle = (args: DayPickerSingleProps) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   return <AppCalendar onSelect={setDate} selected={date} {...args} />;
 };
+const AppCalendarStoryMultiple = (args: DayPickerMultipleProps) => {
+  const [date, setDate] = useState<Date[] | undefined>([new Date()]);
+  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
+};
+const AppCalendarStoryRange = (args: DayPickerRangeProps) => {
+  const [date, setDate] = useState<DateRange | undefined>(undefined);
+  return <AppCalendar onSelect={setDate} selected={date} {...args} />;
+};
 
 const meta = {
-  argTypes: {
-    showOutsideDays: {
-      control: 'boolean',
-      description: 'Show days out of the current month',
-    },
-  },
   component: AppCalendar,
   parameters: {
     layout: 'centered',
@@ -74,27 +76,55 @@ export const SetStartDay: Story = {
 
 export const ShowRangeDate: Story = {
   render: () => (
-    <AppCalendarStorySingle fromDate={new Date(2024, 1, 4)} mode='single' toDate={new Date(2024, 11, 29)} weekStartsOn={1} />
+    <AppCalendarStorySingle
+      fromDate={new Date(2024, 1, 4)}
+      mode='single'
+      toDate={new Date(2024, 11, 29)}
+      weekStartsOn={1}
+    />
   ),
 };
 
 export const LayoutDropdown: Story = {
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
-    return (
-      <AppCalendar
-        captionLayout='dropdown'
-        classNames={{
-          caption_dropdowns: 'flex',
-          months: 'p-3',
-        }}
-        fromMonth={new Date(2000, 1)}
-        mode='single'
-        onSelect={setDate}
-        selected={date}
-        toMonth={new Date(2099, 6)}
-        weekStartsOn={1}
-      />
-    );
-  },
+  render: () => (
+    <AppCalendarStorySingle
+      captionLayout='dropdown'
+      classNames={{
+        caption_dropdowns: 'flex justify-center',
+        caption_label: 'hidden',
+        dropdown_month: 'text-sm',
+        dropdown_year: 'text-sm',
+      }}
+      fromMonth={new Date(2000, 1)}
+      mode='single'
+      toMonth={new Date(2099, 6)}
+      weekStartsOn={1}
+    />
+  ),
+};
+
+export const MultipleDaysSelected: Story = {
+  render: () => <AppCalendarStoryMultiple mode='multiple' />,
+};
+
+export const MultipleDaysWithMinMax: Story = {
+  render: () => <AppCalendarStoryMultiple max={7} min={3} mode='multiple' />,
+};
+
+export const Modifiers: Story = {
+  render: () => (
+    <AppCalendarStoryMultiple
+      mode='multiple'
+      modifiers={{ special: [new Date(2024, 11, 10)] }}
+      modifiersClassNames={{ special: 'bg-red-500' }}
+    />
+  ),
+};
+
+export const DisplayMultiMonths: Story = {
+  render: () => <AppCalendarStoryMultiple mode='multiple' numberOfMonths={2} />,
+};
+
+export const RangeDays: Story = {
+  render: () => <AppCalendarStoryRange mode='range' />,
 };
