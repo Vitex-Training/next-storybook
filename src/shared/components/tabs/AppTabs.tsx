@@ -8,8 +8,6 @@ export type CustomTabsProps = {
   readonly dir?: 'center' | 'ltr' | 'rtl';
 } & Omit<React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>, 'dir'>;
 
-// data-[orientation="vertical"]:justify-center data-[orientation="vertical"]:flex data-[orientation="vertical"]:rtl:flex-row-reverse
-
 const Tabs = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Root>, CustomTabsProps>(
   ({ className, dir: dirProp = 'ltr', ...props }, ref) => {
     const dir = dirProp as TabsPrimitive.TabsProps['dir'];
