@@ -40,7 +40,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Components/Tabs',
+  title: 'Components/Tabs/Tabs',
 } satisfies Meta<typeof AppTabs>;
 
 export default meta;
@@ -48,6 +48,7 @@ type Story = StoryObj<typeof AppTabs>;
 
 export const Default: Story = {
   args: {
+    activationMode: 'automatic',
     children: (
       <>
         <AppTabsList>
@@ -63,6 +64,8 @@ export const Default: Story = {
       </>
     ),
     defaultValue: 'tg1',
+    dir: 'ltr',
+    orientation: 'horizontal',
   },
 };
 
@@ -80,21 +83,35 @@ export const Vertical: Story = {
   },
 };
 
-export const Automatic: Story = {
-  args: {
-    ...Default.args,
-    activationMode: 'automatic',
-  },
-  render: (args) => {
+export const WithInterval: Story = {
+  render: () => {
     const [activeTab, setActiveTab] = React.useState('tg1');
     React.useEffect(() => {
-      const interval = setInterval(() =>{
+      const interval = setInterval(() => {
         setActiveTab((prev) => (prev === 'tg1' ? 'tg2' : 'tg1'));
       }, 2000);
       return () => clearInterval(interval);
     }, []);
     return (
-      <AppTabs {...args} value={activeTab} />
-    )
+      <AppTabs value={activeTab}>
+        <AppTabsList>
+          <AppTabsTrigger value='tg1'>Trigger1</AppTabsTrigger>
+          <AppTabsTrigger value='tg2'>Trigger2</AppTabsTrigger>
+        </AppTabsList>
+        <AppTabsContent className='h-20 w-96 rounded-md border px-2 py-1' value='tg1'>
+          Content1
+        </AppTabsContent>
+        <AppTabsContent className='h-20 w-96 rounded-md border px-2 py-1' value='tg2'>
+          Content2
+        </AppTabsContent>
+      </AppTabs>
+    );
+  },
+};
+
+export const Manual: Story = {
+  args: {
+    ...Default.args,
+    activationMode: 'manual',
   },
 };

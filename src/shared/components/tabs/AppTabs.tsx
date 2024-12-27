@@ -5,8 +5,10 @@ import * as React from 'react';
 import { cn } from 'src/shared/utils/className';
 
 export type CustomTabsProps = {
-  readonly dir: 'center' | 'ltr' | 'rtl';
+  readonly dir?: 'center' | 'ltr' | 'rtl';
 } & Omit<React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>, 'dir'>;
+
+// data-[orientation="vertical"]:justify-center data-[orientation="vertical"]:flex data-[orientation="vertical"]:rtl:flex-row-reverse
 
 const Tabs = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Root>, CustomTabsProps>(
   ({ className, dir: dirProp = 'ltr', ...props }, ref) => {
@@ -14,8 +16,9 @@ const Tabs = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Root>, Cus
     return (
       <TabsPrimitive.Root
         className={cn(
-          'justify-center data-[orientation="vertical"]:flex',
-          dirProp === 'center' && '[&>div:nth-child(1)]:w-full',
+          'data-[orientation="vertical"]:flex',
+          dirProp === 'center' &&
+            '[&>div:nth-child(1)]:w-full data-[orientation="vertical"]:[&>div:nth-child(1)]:w-fit',
           className,
         )}
         dir={dir}
@@ -63,7 +66,7 @@ const TabsContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
     className={cn(
-      'ml-2 mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[orientation="vertical"]:mt-0',
+      'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[orientation="vertical"]:mt-0 ltr:data-[orientation="vertical"]:ml-2 rtl:data-[orientation="vertical"]:mr-2',
       className,
     )}
     ref={ref}
